@@ -18,7 +18,7 @@ public class DeliveryStatusTest {
     
     @Test
     void waitingForCourier_canChangeToDelivered() {
-        assertTrue(DeliveryStatus.WAITING_FOR_COURIER.canNotChangeTo(DeliveryStatus.DELIVERY));
+        assertTrue(DeliveryStatus.WAITING_FOR_COURIER.canNotChangeTo(DeliveryStatus.DELIVERED));
     }
 
 }

@@ -1,18 +1,59 @@
 services:
-  postgres:
+  # delivery-tracking:
+  #   image: postgres:17.5
+  #   environment:
+  #     POSTGRES_DB: deliverytracking
+  #     POSTGRES_USER: algadelivery
+  #     POSTGRES_PASSWORD: algadelivery
+  #   volumes:
+  #     - delivery-data:/var/lib/postgresql/data
+  #   ports:
+  #     - 5432:5432
+  #   networks:
+  #     - local-network
+  courier-management:
     image: postgres:17.5
     environment:
-      POSTGRES_USER: ${jdbc-username}
-      POSTGRES_PASSWORD: ${jdbc-password}
+      POSTGRES_DB: couriermanagement
+      POSTGRES_USER: algadelivery
+      POSTGRES_PASSWORD: algadelivery
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - courier-data:/var/lib/postgresql/data
     ports:
       - 5432:5432
     networks:
       - local-network
+  courier-management-test:
+    image: postgres:17.5
+    environment:
+      POSTGRES_DB: couriermanagement_test
+      POSTGRES_USER: algadelivery
+      POSTGRES_PASSWORD: algadelivery
+    volumes:
+      - courier-data-teste:/var/lib/postgresql/data
+    ports:
+      - 5435:5432
+    networks:
+      - local-network
+
+  delivery-tracking-test:
+    image: postgres:17.5
+    environment:
+      POSTGRES_DB: deliverytracking_test
+      POSTGRES_USER: algadelivery
+      POSTGRES_PASSWORD: algadelivery
+    volumes:
+      - delivery-data-teste:/var/lib/postgresql/data
+    ports:
+      - 5436:5432
+    networks:
+      - local-network
 
 volumes:
-  postgres-data:
+  delivery-data:
+  courier-data:
+  courier-data-teste:
+  delivery-data-teste:
 
 networks:
   local-network:
